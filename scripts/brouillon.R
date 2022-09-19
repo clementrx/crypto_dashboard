@@ -55,6 +55,8 @@ df2 <- cbind(df2, SMA(df2[,"close"], n=20))
 df2 <- cbind(df2, SMA(df2[,"close"], n=50))
 df2 <- cbind(df2, SMA(df2[,"close"], n=100))
 
+df2 %>% mutate(SMA10bis = SMA(close, n=10))
+
 colnames(df2)[6:9] <- c('SMA10','SMA20', 'SMA50', 'SMA100')
 
 dygraph(df2) %>%
@@ -75,4 +77,8 @@ don=xts( x=synth_df[,-1], order.by=synth_df$close_time)
 
 dygraph(don) 
 
-
+klines <- rbindlist(lapply(
+  c('ETHBTC', 'ARKBTC', 'NEOBTC', 'IOTABTC'),
+  binance_klines,
+  interval = '15m',
+  limit = 4*24))
