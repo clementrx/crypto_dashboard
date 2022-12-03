@@ -9,6 +9,15 @@ packages <- c("tidyverse",
 
 install.packages(setdiff(packages, rownames(installed.packages())))
 
+library(tidyverse)
+library(binancer)
+library(scales)
+library(data.table)
+library(dygraphs)
+library(quantmod)
+library(xts)
+library(shiny)
+
 today = Sys.Date()
 last_7d = today-7
 last_15d = today-15
